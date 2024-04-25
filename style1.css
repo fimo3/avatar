@@ -22,6 +22,14 @@ h4 {
 html {
   color: black;
   font-family: Avatar;
+  background-image: url("bg.png");
+  background-repeat: repeat;
+}
+.article {
+  flex: content;
+  justify-content: center;
+  background-color: #bafffd;
+  padding: 5px;
 }
 nav ul {
   list-style-type: none;
