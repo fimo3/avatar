@@ -13,5 +13,253 @@
       </ul>
     </nav>
   </header>
-  <body></body>
+  <body onload="onBodyLoad()">
+    <h1>Kingdoms</h1>
+    <canvas id="canvas-id" width="1000" height="600">
+      <script>
+        function image(kart, x, y, w, h) {
+          drawImage(kart, x - w / 2, y - h / 2, w, h);
+        }
+        let updateTime;
+        let mouseX, mouseY;
+        let isKeyPressed;
+        let canvas, context;
+        let endlessCanvas = false;
+        var update, draw, mouseup, mousemove, mousedown, keyup, keydown, init;
+        const reqAnimationFrame =
+          window.requestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function (callback) {
+            setTimeout(callback, 1000 / 30);
+          };
+
+        class MyImage {
+          constructor(src_, backupColor_) {
+            this.src = src_;
+            this.backupColor = backupColor_;
+            this.img = new Image();
+            this.canDraw = false;
+            this.drawBackup = false;
+            this.img.onload = () => {
+              this.canDraw = true;
+            };
+            this.img.onerror = () => {
+              this.canDraw = false;
+              this.drawBackup = true;
+              throw "Unable to load image " + this.src;
+            };
+          }
+          draw(x, y, xs, ys) {
+            if (xs == undefined) {
+              xs = this.img.width | 100;
+              ys = this.img.height | 100;
+            }
+            // If img.src is undefined - set it
+            if (!this.img.src) {
+              // Load image
+              this.img.src = this.src;
+            } else if (this.canDraw) {
+              try {
+                context.drawImage(this.img, x, y, xs, ys);
+              } catch (e) {
+                this.canDraw = false;
+                this.drawBackup = true;
+                throw e;
+              }
+            } else if (this.drawBackup) {
+              context.fillStyle = this.backupColor;
+              context.fillRect(x, y, xs, ys);
+            }
+          }
+        }
+        (function preloadImages() {
+          window[name] = tryToLoad(name, backupColor);
+        });
+
+        function areColliding(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh) {
+          if (Bx <= Ax + Aw) {
+            if (Ax <= Bx + Bw) {
+              if (By <= Ay + Ah) {
+                if (Ay <= By + Bh) {
+                  return 1;
+                }
+              }
+            }
+          }
+          return 0;
+        }
+        function isMouseColliding(x, y, w, h) {
+          if (areColliding(mouseX, mouseY, 1, 1, x, y, w, h)) {
+            return 1;
+          }
+          return 0;
+        }
+
+        function randomInteger(upTo) {
+          return Math.floor(Math.random() * upTo);
+        }
+
+        function drawLine(startX, startY, endX, endY) {
+          context.beginPath();
+          context.moveTo(startX, startY);
+          context.lineTo(endX, endY);
+          context.stroke();
+        }
+
+        function tryToLoad(imageNameWithoutDotPng, backupColor) {
+          return new MyImage(
+            "./" + imageNameWithoutDotPng + ".png",
+            backupColor
+          );
+        }
+
+        function drawImage(myImageObject, x, y, xs, ys) {
+          myImageObject.draw(x, y, xs, ys);
+        }
+
+        function isFunction(f) {
+          return typeof f == "function";
+        }
+
+        function updateMousePosition(e) {
+          let boundingRect = canvas.getBoundingClientRect();
+          mouseX = e.pageX - boundingRect.x;
+          mouseY = e.pageY - boundingRect.y;
+        }
+
+        function updateMousePositionTouchEvent(e) {
+          let boundingRect = canvas.getBoundingClientRect();
+          let touchobj = e.changedTouches[0];
+          mouseX = touchobj.pageX - boundingRect.x;
+          mouseY = touchobj.pageY - boundingRect.y;
+        }
+
+        function getCanvas() {
+          canvas = document.getElementById("canvas-id");
+
+          if (endlessCanvas) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            window.onresize = function () {
+              canvas.width = window.innerWidth;
+              canvas.height = window.innerHeight;
+            };
+          } else {
+            canvas.width = 1000;
+            canvas.height = 600;
+          }
+          context = canvas.getContext("2d");
+          context.fillStyle = "#0000ff";
+        }
+
+        function attachEvents() {
+          if ("ontouchstart" in window || navigator.maxTouchPoints) {
+            isMobile = true;
+            window.addEventListener("touchstart", function (e) {
+              updateMousePositionTouchEvent(e);
+              if (isFunction(mousedown)) {
+                mousedown();
+              }
+            });
+            window.addEventListener("touchend", function (e) {
+              updateMousePositionTouchEvent(e);
+              if (isFunction(mouseup)) {
+                mouseup();
+              }
+            });
+            window.addEventListener("touchmove", function (e) {
+              updateMousePositionTouchEvent(e);
+            });
+          }
+          window.addEventListener("mousemove", function (e) {
+            updateMousePosition(e);
+          });
+          if (isFunction(mousemove)) {
+            window.addEventListener("mousemove", mousemove);
+          }
+          if (isFunction(mouseup)) {
+            window.addEventListener("mouseup", mouseup);
+          }
+          if (isFunction(mousedown)) {
+            window.addEventListener("mousedown", mousedown);
+          }
+          window.addEventListener("keydown", function (e) {
+            isKeyPressed[e.keyCode] = 1;
+            if (isFunction(keydown)) {
+              keydown(e.keyCode);
+            }
+          });
+          window.addEventListener("keyup", function (e) {
+            isKeyPressed[e.keyCode] = 0;
+            if (isFunction(keyup)) {
+              keyup(e.keyCode);
+            }
+          });
+        }
+        function redraw() {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.globalAlpha = 1;
+          context.font = "10px Arial";
+          context.fillStyle = "cyan";
+          context.textBaseline = "top";
+          draw();
+          reqAnimationFrame(redraw);
+        }
+        function initGlobalVariables() {
+          updateTime = 10;
+          mouseX = 0;
+          mouseY = 0;
+          isKeyPressed = new Array(256).fill(0);
+        }
+        function drawError() {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.globalAlpha = 1;
+          context.fillStyle = "#FF0000";
+          context.font = "20px Arial";
+          context.fillText("Press <F12> for error info!", 40, 40);
+        }
+        function onBodyLoad() {
+          initGlobalVariables();
+
+          getCanvas();
+
+          attachEvents();
+
+          if (!isFunction(draw)) {
+            drawError();
+            throw new TypeError("draw is not a function");
+          }
+          if (isFunction(init)) {
+            init();
+          }
+
+          if (!isFunction(update)) {
+            drawError();
+            throw new TypeError("update is not a function");
+          }
+          redraw();
+          setInterval(update, updateTime);
+        }
+        let map = tryToLoad("map", "cornflowerblue");
+        let earth = tryToLoad("earth", "cornflowerblue");
+        let water1 = tryToLoad("water1", "cornflowerblue");
+        let water2 = tryToLoad("water2", "cornflowerblue");
+        let fire = tryToLoad("fire", "cornflowerblue");
+        let air1 = tryToLoad("air1", "cornflowerblue");
+        let air2 = tryToLoad("air2", "cornflowerblue");
+        let air3 = tryToLoad("air3", "cornflowerblue");
+        function draw() {
+          drawImage(map, 0, 0, 1000, 600);
+          drawImage(earth, 371, 152.125, 776 - 371, 378 - 152);
+        }
+        function update() {}
+        function mousedown() {
+          console.log(mouseX + " " + mouseY);
+        }
+      </script>
+    </canvas>
+  </body>
 </html>
