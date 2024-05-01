@@ -249,11 +249,16 @@
         let water2 = tryToLoad("water2", "cornflowerblue");
         let fire = tryToLoad("fire", "cornflowerblue");
         let air1 = tryToLoad("air1", "cornflowerblue");
+        //make these two transparent   | |
+        //                             \/
         let air2 = tryToLoad("air2", "cornflowerblue");
         let air3 = tryToLoad("air3", "cornflowerblue");
         function draw() {
           drawImage(map, 0, 0, 1000, 600);
           drawImage(earth, 371, 152.125, 776 - 371, 378 - 152);
+          drawImage(fire, 218, 223.125, 457 - 218, 341 - 219);
+          drawImage(water1, 438, 101.125, 569 - 438, 155 - 101);
+          drawImage(water2, 438, 101.125, 569 - 438, 155 - 101);
         }
         function update() {}
         function mousedown() {
