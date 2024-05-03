@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Kingdoms</title>
+    <link rel="stylesheet" type="text/css" href="styleKingdom.css" />
   </head>
   <header>
     <nav>
@@ -15,6 +16,7 @@
   </header>
   <body onload="onBodyLoad()">
     <h1>Kingdoms</h1>
+    <p id="elements">Click on one of the nations to proceed...</p>
     <canvas id="canvas-id" width="1000" height="600">
       <script>
         function image(kart, x, y, w, h) {
@@ -245,22 +247,115 @@
         }
         let map = tryToLoad("map", "cornflowerblue");
         let earth = tryToLoad("earth", "cornflowerblue");
+        let earth1 = tryToLoad("earth1", "cornflowerblue");
         let water1 = tryToLoad("water1", "cornflowerblue");
+        let water11 = tryToLoad("water11", "cornflowerblue");
+        let water21 = tryToLoad("water21", "cornflowerblue");
         let water2 = tryToLoad("water2", "cornflowerblue");
         let fire = tryToLoad("fire", "cornflowerblue");
+        let fire1 = tryToLoad("fire1", "cornflowerblue");
         let air1 = tryToLoad("air1", "cornflowerblue");
         let air2 = tryToLoad("air2", "cornflowerblue");
         let air3 = tryToLoad("air3", "cornflowerblue");
+        let air11 = tryToLoad("air11", "cornflowerblue");
+        let air21 = tryToLoad("air21", "cornflowerblue");
+        let air31 = tryToLoad("air31", "cornflowerblue");
+        let earthKartinka = earth;
+        let fireKart = fire;
+        let water1Kart = water1;
+        let water2Kart = water2;
+        let air1Kart = air1;
+        let air2Kart = air2;
+        let air3Kart = air3;
+
+        let earthText;
+        let fireText;
+        let water1Text;
+        let water2Text;
+        let air1Text;
+        let air2Text;
+        let air3Text;
+        function update() {
+          let text = document.getElementById("elements");
+          if (earthText) {
+            text.innerHTML = "Earth";
+          } else if (fireText) {
+            text.innerHTML = "Fire";
+          } else if (water1Text) {
+            text.innerHTML = "Water1";
+          } else if (water2Text) {
+            text.innerHTML = "Water2";
+          } else if (air1Text) {
+            text.innerHTML = "Air1";
+          } else if (air2Text) {
+            text.innerHTML = "Air2";
+          } else if (air3Text) {
+            text.innerHTML = "Air3";
+          } else {
+            text.innerHTML = "Click on one of the nations to proceed...";
+          }
+        }
         function draw() {
           drawImage(map, 0, 0, 1000, 600);
-          drawImage(earth, 371, 152.125, 776 - 371, 378 - 152);
-          drawImage(fire, 218, 223.125, 457 - 218, 341 - 219);
-          drawImage(water1, 438, 101.125, 569 - 438, 155 - 101);
-          drawImage(water2, 438, 101.125, 569 - 438, 155 - 101);
+          drawImage(earthKartinka, 371, 152.125, 776 - 371, 378 - 152);
+          drawImage(fireKart, 218, 223.125, 457 - 218, 341 - 219);
+          drawImage(water1Kart, 438, 101.125, 569 - 438, 155 - 101);
+          drawImage(water2Kart, 418, 432.125, 569 - 418, 491 - 432);
+          drawImage(air1Kart, 265, 182.125, 377 - 265, 236 - 182);
+          drawImage(air2Kart, 735, 318.125, 784 - 735, 392 - 318);
+          drawImage(air3Kart, 353, 357.125, 534 - 353, 415 - 357);
         }
-        function update() {}
-        function mousedown() {
+        function mouseup() {
           console.log(mouseX + " " + mouseY);
+          if (isMouseColliding(371, 152.125, 776 - 371, 378 - 152)) {
+            earthKartinka = earth1;
+            earthText = true;
+          } else {
+            earthText = false;
+            earthKartinka = earth;
+          }
+          if (isMouseColliding(218, 223.125, 457 - 218, 341 - 219)) {
+            fireText = true;
+            fireKart = fire1;
+          } else {
+            fireText = false;
+            fireKart = fire;
+          }
+          if (isMouseColliding(438, 101.125, 569 - 438, 155 - 101)) {
+            water1Text = true;
+            water1Kart = water11;
+          } else {
+            water1Text = false;
+            water1Kart = water1;
+          }
+          if (isMouseColliding(418, 432.125, 569 - 418, 491 - 432)) {
+            water2Text = true;
+            water2Kart = water21;
+          } else {
+            water2Text = false;
+            water2Kart = water2;
+          }
+          if (isMouseColliding(265, 182.125, 377 - 265, 236 - 182)) {
+            air1Text = true;
+            air1Kart = air11;
+          } else {
+            air1Text = false;
+            air1Kart = air1;
+          }
+          if (isMouseColliding(735, 318.125, 784 - 735, 392 - 318)) {
+            air2Text = true;
+            air2Kart = air21;
+          } else {
+            air2Text = false;
+            air2Kart = air2;
+          }
+          if (isMouseColliding(353, 357.125, 534 - 353, 415 - 357)) {
+            air3Text = true;
+            air3Kart = air31;
+          } else {
+            air3Text = false;
+            air3Kart = air3;
+          }
         }
       </script>
     </canvas>
