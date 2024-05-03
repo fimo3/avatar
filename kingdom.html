@@ -16,7 +16,8 @@
   </header>
   <body onload="onBodyLoad()">
     <h1>Kingdoms</h1>
-    <p id="elements">Click on one of the nations to proceed...</p>
+    <h2 id="elementsH1">Click on one of the nations to proceed...</h2>
+    <p id="elementsParagraph"></p>
     <canvas id="canvas-id" width="1000" height="600">
       <script>
         function image(kart, x, y, w, h) {
@@ -276,7 +277,7 @@
         let air2Text;
         let air3Text;
         function update() {
-          let text = document.getElementById("elements");
+          let text = document.getElementById("elementsH1");
           if (earthText) {
             text.innerHTML = "Earth";
           } else if (fireText) {
