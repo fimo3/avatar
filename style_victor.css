@@ -1,0 +1,65 @@
+@font-face {
+    font-family: Avatar;
+    src: url(AvatarAirbender.ttf);
+}
+
+body {
+    font-family: Avatar;
+    background-color: white;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bookContainer {
+    width: 100%;
+    max-width: 100%;
+}
+
+.book {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.episodeGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.episodeCard {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 700px;
+    flex: 1 1 calc(33.333% - 30px);
+    box-sizing: border-box;
+}
+
+.episodeNumber {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+.episodeTitle {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.episodeDescription {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
