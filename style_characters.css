@@ -1,0 +1,78 @@
+.chrContainer{
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+}
+
+.chrBending{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.chrCard{
+    background: white;
+    width: 450px;
+    height: 450px;
+    margin: 80;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    padding: 60px;
+    max-width: 700px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chrPhoto {
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.chrCard.expanded{
+    width: 7000px;
+    height: 450px;
+    flex-grow: 2;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.chrInfo{
+    display: none;
+    margin-top: 10px;
+    font-size: 20px;
+    padding-top: 40px;
+    text-align: center;
+
+}
+
+.chrCard.expanded .chrInfo{
+    display: block;
+}
+
+.TitleBending{
+    text-align: center;
+    font-size: 40px;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.h2{
+    text-align: left;  
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 50px;
+    padding-left: 900px;
+}
+
