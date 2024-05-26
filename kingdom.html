@@ -33,8 +33,8 @@
   </nav>
   <script src="dropdown.js"></script>
     <h1>Kingdoms</h1>
+    <h4>Click on one of the nations to proceed...</h4>
     <h2 id="elementsH1">Click on one of the nations to proceed...</h2>
-    <p id="elementsParagraph"></p>
     <canvas id="canvas-id" width="1000" height="600">
       <script>
         function image(kart, x, y, w, h) {
@@ -296,19 +296,19 @@
         function update() {
           let text = document.getElementById("elementsH1");
           if (earthText) {
-            text.innerHTML = "Earth";
+            text.innerHTML = "Earth Kingdom: Ba Sing Se:Outer Wall: The formidable outer defense of the city. Middle Ring: The residential area for middle-class citizens and merchants. Upper Ring: The home of the Earth Kingdom's nobility and the Earth King’s palace. Lake Laogai: An underground Dai Li prison and brainwashing facility. Omashu: Omashu City: Known for its mail delivery system that uses earthbending. Ruled by the eccentric King Bumi. Kyoshi Island: Kyoshi Village: The home of the Kyoshi Warriors and the birthplace of Avatar Kyoshi. Kyoshi Shrine: A shrine dedicated to Avatar Kyoshi. Gaoling: Beifong Estate: The home of Toph Beifong, located in Gaoling, a city known for its rigid class structure. Si Wong Desert: Library of Wan Shi Tong: A vast underground library guarded by a spirit in the Si Wong Desert. Misty Palms Oasis: A small desert outpost and the entrance to the Si Wong Desert. Full Moon Bay: Full Moon Bay Ferry: A transport service that ferries refugees to Ba Sing Se. Serpent's Pass: A dangerous and narrow pathway leading to Ba Sing Se, surrounded by water and inhabited by a giant serpent. Chin Village: Avatar Day: The village holds an annual celebration to commemorate Avatar Kyoshi's defeat of Chin the Conqueror.";
           } else if (fireText) {
-            text.innerHTML = "Fire";
+            text.innerHTML = "Fire Nation: Fire Nation Capital: Royal Palace: The residence of the Fire Lord and the center of Fire Nation politics. Ember Island: A vacation spot for Fire Nation nobility with beaches and a renowned theater troupe. Crescent Island: Fire Temple: A former home to Avatar Roku’s spirit and a place of significant spiritual importance. Roku's Island: The birthplace and home of Avatar Roku, known for its volcanic environment. Boiling Rock: A high-security Fire Nation prison located on an island in the middle of a boiling lake. Jang Hui: A small fishing village known for being polluted by a nearby Fire Nation factory.";
           } else if (water1Text) {
-            text.innerHTML = "Water1";
+            text.innerHTML = "Northern Water Tribe: Northern Water Tribe City: A grand city located at the North Pole, protected by ice walls. It's a center for waterbending learning and culture.\nSpirit Oasis: A lush garden within the Northern Water Tribe, home to the Moon and Ocean Spirits (Tui and La).";
           } else if (water2Text) {
-            text.innerHTML = "Water2";
+            text.innerHTML = "Southern Water Tribe: Southern Water Tribe Village: A small village at the South Pole, home to Katara and Sokka. It is less developed due to raids by the Fire Nation.\nWhale Tail Island: A remote island in the Southern Ocean near the South Pole.";
           } else if (air1Text) {
-            text.innerHTML = "Air1";
+            text.innerHTML = "Northern Air Temple: Located in the northern Earth Kingdom, now inhabited by refugees who modified it with technology.";
           } else if (air2Text) {
-            text.innerHTML = "Air2";
+            text.innerHTML = "Eastern Air Temple: A secluded and spiritual place, home to Guru Pathik.";
           } else if (air3Text) {
-            text.innerHTML = "Air3";
+            text.innerHTML = "Southern Air Temple: Aang's childhood home, containing the statues of past Avatars.";
           } else {
             text.innerHTML = "Click on one of the nations to proceed...";
           }
