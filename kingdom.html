@@ -5,16 +5,30 @@
     <link rel="stylesheet" type="text/css" href="styleKingdom.css" />
   </head>
   <header>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="kingdom.html">Kingdoms</a></li>
-        <li><a href="atla.html">ATLA</a></li>
-        <li><a href="tlk.html">TLK</a></li>
-      </ul>
-    </nav>
+    
   </header>
   <body onload="onBodyLoad()">
+    <nav>
+      <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="kingdom.html">Kingdoms</a></li>
+          <li class="dropdown">
+              <a href="atla.html" class="dropbtn">ATLA</a>
+              <ul class="dropdown-content">
+                  <li><a href="#">Overview</a></li>
+                  <li><a href="#">Episode List</a></li>
+              </ul>
+          </li>
+          <li class="dropdown">
+              <a href="tlk.html" class="dropbtn">TLK</a>
+              <ul class="dropdown-content">
+                  <li><a href="tlk.html">Overview</a></li>
+                  <li><a href="tlk_ep_list.html">Episode List</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  <script src="dropdown.js"></script>
     <h1>Kingdoms</h1>
     <h2 id="elementsH1">Click on one of the nations to proceed...</h2>
     <p id="elementsParagraph"></p>
@@ -360,5 +374,6 @@
         }
       </script>
     </canvas>
+
   </body>
 </html>

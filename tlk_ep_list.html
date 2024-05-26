@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="style_victor.css">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="kingdom.html">Kingdoms</a></li>
+            <li class="dropdown">
+                <a href="atla.html" class="dropbtn">ATLA</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">Overview</a></li>
+                    <li><a href="#">Episode List</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="tlk.html" class="dropbtn">TLK</a>
+                <ul class="dropdown-content">
+                    <li><a href="tlk.html">Overview</a></li>
+                    <li><a href="tlk_ep_list.html">Episode List</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
     <h1>Episode List</h1>
     <div class="bookContainer">
         <h2 class="book">Book One: Air</h2>
@@ -491,5 +512,6 @@
             </div>
         </div>
     </div>
+    <script src="dropdown.js"></script>
 </body>
 </html>
