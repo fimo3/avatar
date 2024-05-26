@@ -42,7 +42,7 @@
 
 .chrCard.expanded{
     width: 7000px;
-    height: 450px;
+    height: 700px;
     flex-grow: 2;
     align-items: flex-start;
     flex-direction: row;
